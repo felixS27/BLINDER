@@ -26,12 +26,12 @@ print(file_name_mapping)
 def copy_and_rename(source_file,destination_file):
      shutil.copy(source_file,destination_file)
 
-# with ThreadPoolExecutor() as executor:
-#         futures = [executor.submit(copy_and_rename,
-#                                    source_path/original_file,
-#                                    destination_dir/file_copy) for original_file,file_copy in file_name_mapping.items()]
-#         for future in futures:
-#             future.result() 
+with ThreadPoolExecutor() as executor:
+        futures = [executor.submit(copy_and_rename,
+                                   source_path/original_file,
+                                   destination_dir/file_copy) for original_file,file_copy in file_name_mapping.items()]
+        for future in futures:
+            future.result() 
 
 pd.DataFrame({'OriginalFile':[key for key in file_name_mapping.keys()],
        'BlindedFile':[value for value in file_name_mapping.values()]}).to_csv(destination_dir/'key.csv',index=False,sep='\t')
