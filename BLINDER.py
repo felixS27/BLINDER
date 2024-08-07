@@ -6,13 +6,14 @@ import pandas as pd
 
 # Define source dir of files
 source_path = Path('/Users/fschneider/examplefolder')
+# source_path = Path('/Volumes/AnnikaAG-FF/IDIP-Images-save_20240703/Airyscan-Zeiss/2_RawData_processed/2024-07-30_tempRep2_SGspz_WT-T1KO-S1KO-T1S1dKO')
 # Define destination dir to copy to
 destination_dir = source_path/'blinded'
 # Make dir if non existant
 if not destination_dir.exists():
     destination_dir.mkdir()
 # Get all files based on specific suffix
-files = sorted([file for file in source_path.glob('*.txt')])
+files = sorted([file for file in source_path.glob('*.czi')])
 # Get total number of files
 number_of_files = len(files)
 # Get values for blinding data
@@ -21,7 +22,7 @@ index=list(range(number_of_files))
 random.shuffle(index)
 # Create dict for assigning each file to its blinded version
 file_name_mapping={f'{file.name}':f'{idx+1:03d}{file.suffix}' for file,idx in zip(files,index)}
-print(file_name_mapping)
+# print(file_name_mapping)
 # function to do the actual copying
 def copy_and_rename(source_file,destination_file):
      shutil.copy(source_file,destination_file)
@@ -35,3 +36,5 @@ with ThreadPoolExecutor() as executor:
 
 pd.DataFrame({'OriginalFile':[key for key in file_name_mapping.keys()],
        'BlindedFile':[value for value in file_name_mapping.values()]}).to_csv(destination_dir/'key.csv',index=False,sep='\t')
+
+print(f'Finished blinding!')
