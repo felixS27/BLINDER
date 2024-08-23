@@ -77,7 +77,11 @@ tk.Button(root,text='End blinding.',command=root.quit,
 
 # define the help/about button directing to the BLINDER GitHub page
 tk.Button(root, text="Help/About", command=open_webpage,
-          relief=tk.RAISED).grid(row=5,column=2,padx=5,pady=5) 
+          relief=tk.RAISED).grid(row=5,column=1,padx=5,pady=5) 
+
+# define label with my name
+tk.Label(root, text="Powered by Felix Schneider",
+         font=("Arial", 8, "italic")).grid(row=6,column=1,padx=5,pady=5) 
 
 root.mainloop()
 
