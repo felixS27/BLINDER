@@ -1,4 +1,5 @@
 import tkinter as tk
+from tkinter import ttk
 from tkinter import filedialog
 from pathlib import Path
 import random
@@ -49,7 +50,8 @@ def open_webpage():
 root = tk.Tk()  # create parent window
 root.title('BLINDER - Blinding files for data analysis') # set window title
 root.minsize(300,200) # set minimal window size
-root.geometry('500x250+550+300') # set window size and position
+root.geometry('500x300+550+300') # set window size and position
+ttk.Style().theme_use('default') # set window style/theme
 
 # define entry point for directory path
 tk.Label(root,text='File directory').grid(row=0,column=0,padx=5,pady=5,sticky='E')
@@ -81,11 +83,11 @@ tk.Button(root, text="Help/About", command=open_webpage,
 
 # define label with my name
 tk.Label(root, text="Powered by Felix Schneider",
-         font=("Arial", 8, "italic")).grid(row=6,column=1,padx=5,pady=5) 
+         font=("Arial", 9, "italic")).grid(row=6,column=1,padx=5,pady=5) 
 
 # add version number
 tk.Label(root, text="Version 0.1.0",
-         font=("Arial", 8, "italic")).grid(row=7,column=1,padx=5,pady=5) 
+         font=("Arial", 9, "italic")).grid(row=7,column=1,padx=5,pady=5) 
 
 root.mainloop()
 
