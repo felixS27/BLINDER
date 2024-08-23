@@ -36,16 +36,24 @@ def blind_data():
                   'BlindedFile':[value for value in file_name_mapping.values()]}).to_csv(destination_dir/'key.csv',
                                                                                          index=False,sep='\t')
     update_status(message="Processing...",color="orange")
+    processed_files = 0
+    update_counter(processed_files, number_of_files)
     with ThreadPoolExecutor() as executor:
             futures = [executor.submit(copy_and_rename,
                                     source_path/original_file,
                                     destination_dir/file_copy) for original_file,file_copy in file_name_mapping.items()]
             for future in futures:
                 future.result()
+                processed_files += 1
+                update_counter(processed_files, number_of_files)
     update_status(message="Finished!",color="green")
 
 def open_webpage():
     webbrowser.open("https://github.com/felixS27/BLINDER")
+
+def update_counter(count, total):
+    counter_label.config(text=f"Processed {count} out of {total} files")
+    root.update_idletasks()
 
 root = tk.Tk()  # create parent window
 root.title('BLINDER - Blinding files for data analysis') # set window title
@@ -73,21 +81,25 @@ tk.Button(root,text='Start Blinding Data!',command=blind_data,
 status_label = tk.Label(root, text="Wait for action.")
 status_label.grid(row=3,column=1,padx=5, pady=5)
 
+# Create a label for file processing counter
+counter_label = tk.Label(root, text="Processed 0 out of 0 files")
+counter_label.grid(row=4,column=1,padx=5, pady=5)
+
 # define button for ending program
 tk.Button(root,text='End blinding.',command=root.quit,
-          relief=tk.RAISED).grid(row=4,column=1,padx=5,pady=5)
+          relief=tk.RAISED).grid(row=5,column=2,padx=5,pady=5)
 
 # define the help/about button directing to the BLINDER GitHub page
 tk.Button(root, text="Help/About", command=open_webpage,
-          relief=tk.RAISED).grid(row=5,column=1,padx=5,pady=5) 
+          relief=tk.RAISED).grid(row=5,column=0,padx=5,pady=5) 
 
 # define label with my name
 tk.Label(root, text="Powered by Felix Schneider",
-         font=("Arial", 9, "italic")).grid(row=6,column=1,padx=5,pady=5) 
+         font=("Arial", 9, "italic")).grid(row=5,column=1,padx=5,pady=5) 
 
 # add version number
-tk.Label(root, text="Version 0.1.0",
-         font=("Arial", 9, "italic")).grid(row=7,column=1,padx=5,pady=5) 
+tk.Label(root, text="Version 0.2.0",
+         font=("Arial", 9, "italic")).grid(row=6,column=1,padx=5,pady=5) 
 
 root.mainloop()
 
