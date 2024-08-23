@@ -83,5 +83,9 @@ tk.Button(root, text="Help/About", command=open_webpage,
 tk.Label(root, text="Powered by Felix Schneider",
          font=("Arial", 8, "italic")).grid(row=6,column=1,padx=5,pady=5) 
 
+# add version number
+tk.Label(root, text="Version 0.1.0",
+         font=("Arial", 8, "italic")).grid(row=7,column=1,padx=5,pady=5) 
+
 root.mainloop()
 
