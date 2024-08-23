@@ -33,6 +33,9 @@ def blind_data():
     index=list(range(number_of_files))
     random.shuffle(index)
     file_name_mapping={f'{file.name}':f'{idx+1:03d}{file.suffix}' for file,idx in zip(files,index)}
+    pd.DataFrame({'OriginalFile':[key for key in file_name_mapping.keys()],
+                  'BlindedFile':[value for value in file_name_mapping.values()]}).to_csv(destination_dir/'key.csv',
+                                                                                         index=False,sep='\t')
     with ThreadPoolExecutor() as executor:
             futures = [executor.submit(copy_and_rename,
                                     source_path/original_file,
@@ -40,14 +43,12 @@ def blind_data():
             for future in futures:
                 future.result()
     update_status(message="Writing key file...",color="yellow")
-    pd.DataFrame({'OriginalFile':[key for key in file_name_mapping.keys()],
-        'BlindedFile':[value for value in file_name_mapping.values()]}).to_csv(destination_dir/'key.csv',index=False,sep='\t')
     update_status(message="Finished!",color="green")
 
 root = tk.Tk()  # create parent window
 root.title('BLINDER - Blinding files for data analysis') # set window title
 root.minsize(300,200) # set minimal window size
-root.geometry('300x200+550+300') # set window size and position
+root.geometry('500x300+550+300') # set window size and position
 
 # define entry point for directory path
 tk.Label(root,text='File directory').grid(row=0,column=0,padx=5,pady=5,sticky='E')
@@ -57,7 +58,7 @@ tk.Button(root, text="Browse", command=open_directory,
           relief=tk.RAISED).grid(row=0,column=2,padx=5, pady=5)
 
 # define entry point for file suffix
-tk.Label(root,text='File suffix').grid(row=1,column=0,padx=5, pady=5,sticky='E')
+tk.Label(root,text='File suffix (.tif or .txt)').grid(row=1,column=0,padx=5, pady=5,sticky='E')
 file_suffix=tk.Entry(root,bd=1,relief=tk.FLAT)
 file_suffix.grid(row=1,column=1,padx=5, pady=5)
 
