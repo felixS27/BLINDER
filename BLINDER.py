@@ -22,7 +22,7 @@ def update_status(message, color="black"):
     root.update_idletasks()
 
 def blind_data():
-    update_status(message="Processing...",color="orange")
+    update_status(message="Writing key file...",color="yellow")
     source_path = Path(dir_path.get())
     destination_dir = source_path/'blinded'
     if not destination_dir.exists():
@@ -35,13 +35,13 @@ def blind_data():
     pd.DataFrame({'OriginalFile':[key for key in file_name_mapping.keys()],
                   'BlindedFile':[value for value in file_name_mapping.values()]}).to_csv(destination_dir/'key.csv',
                                                                                          index=False,sep='\t')
+    update_status(message="Processing...",color="orange")
     with ThreadPoolExecutor() as executor:
             futures = [executor.submit(copy_and_rename,
                                     source_path/original_file,
                                     destination_dir/file_copy) for original_file,file_copy in file_name_mapping.items()]
             for future in futures:
                 future.result()
-    update_status(message="Writing key file...",color="yellow")
     update_status(message="Finished!",color="green")
 
 def open_webpage():
