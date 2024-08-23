@@ -12,9 +12,3 @@ Start application and enter the following:
 
 ## How does it work
 Based on the file suffix, BLINDER creates a list of all files in the given directory with the given suffix. Then BLINDER creates a list with values ranging from 0 to (number of images) - 1. It then creates a mapping of each file with a random number from that list so that each file is assigned to one unique number. It then copies the files into a subfolder called 'blinded' and renames them according to this mapping. In the end BLINDER stores the mapping as a .csv file in the 'blinded' subfolder for later unblinding of the data.
-
-## Installation
-#### Option 1 (use as script with conda)
-''' bash
-conda create -n blinder python=3.10
-'''
