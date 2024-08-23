@@ -1,13 +1,11 @@
 import tkinter as tk
-from tkinter import ttk
 from tkinter import filedialog
 from pathlib import Path
 import random
 import shutil
 from concurrent.futures import ThreadPoolExecutor
 import pandas as pd
-from queue import Queue
-from threading import Thread
+import webbrowser
 
 def open_directory():
     directory=filedialog.askdirectory()
@@ -45,10 +43,13 @@ def blind_data():
     update_status(message="Writing key file...",color="yellow")
     update_status(message="Finished!",color="green")
 
+def open_webpage():
+    webbrowser.open("https://github.com/felixS27/BLINDER")
+
 root = tk.Tk()  # create parent window
 root.title('BLINDER - Blinding files for data analysis') # set window title
 root.minsize(300,200) # set minimal window size
-root.geometry('500x300+550+300') # set window size and position
+root.geometry('500x250+550+300') # set window size and position
 
 # define entry point for directory path
 tk.Label(root,text='File directory').grid(row=0,column=0,padx=5,pady=5,sticky='E')
@@ -72,6 +73,11 @@ status_label.grid(row=3,column=1,padx=5, pady=5)
 
 # define button for ending program
 tk.Button(root,text='End blinding.',command=root.quit,
-          relief=tk.RAISED).grid(row=4,column=1,padx=5,pady=5) # adjust row according to progress bar
+          relief=tk.RAISED).grid(row=4,column=1,padx=5,pady=5)
+
+# define the help/about button directing to the BLINDER GitHub page
+tk.Button(root, text="Help/About", command=open_webpage,
+          relief=tk.RAISED).grid(row=5,column=2,padx=5,pady=5) 
 
 root.mainloop()
+
