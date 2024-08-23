@@ -58,7 +58,7 @@ def update_counter(count, total):
 root = tk.Tk()  # create parent window
 root.title('BLINDER - Blinding files for data analysis') # set window title
 root.minsize(300,200) # set minimal window size
-root.geometry('500x300+550+300') # set window size and position
+root.geometry('500x250+550+300') # set window size and position
 ttk.Style().theme_use('default') # set window style/theme
 
 # define entry point for directory path
@@ -98,7 +98,7 @@ tk.Label(root, text="Powered by Felix Schneider",
          font=("Arial", 9, "italic")).grid(row=5,column=1,padx=5,pady=5) 
 
 # add version number
-tk.Label(root, text="Version 0.2.0",
+tk.Label(root, text="Version 0.2.1",
          font=("Arial", 9, "italic")).grid(row=6,column=1,padx=5,pady=5) 
 
 root.mainloop()
