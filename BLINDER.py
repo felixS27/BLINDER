@@ -69,7 +69,7 @@ tk.Button(root, text="Browse", command=open_directory,
           relief=tk.RAISED).grid(row=0,column=2,padx=5, pady=5)
 
 # define entry point for file suffix
-tk.Label(root,text='File suffix (.tif or .txt)').grid(row=1,column=0,padx=5, pady=5,sticky='E')
+tk.Label(root,text='File suffix (e.g.: .tif/.lif/.czi/...)').grid(row=1,column=0,padx=5, pady=5,sticky='E')
 file_suffix=tk.Entry(root,bd=1,relief=tk.FLAT)
 file_suffix.grid(row=1,column=1,padx=5, pady=5)
 
@@ -86,7 +86,7 @@ counter_label = tk.Label(root, text="Processed 0 out of 0 files")
 counter_label.grid(row=4,column=1,padx=5, pady=5)
 
 # define button for ending program
-tk.Button(root,text='End blinding.',command=root.quit,
+tk.Button(root,text='Close BLINDER.',command=root.quit,
           relief=tk.RAISED).grid(row=5,column=2,padx=5,pady=5)
 
 # define the help/about button directing to the BLINDER GitHub page
@@ -98,7 +98,7 @@ tk.Label(root, text="Powered by Felix Schneider",
          font=("Arial", 9, "italic")).grid(row=5,column=1,padx=5,pady=5) 
 
 # add version number
-tk.Label(root, text="Version 0.2.1",
+tk.Label(root, text="Version 0.2.2",
          font=("Arial", 9, "italic")).grid(row=6,column=1,padx=5,pady=5) 
 
 root.mainloop()
