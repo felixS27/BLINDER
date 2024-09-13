@@ -22,7 +22,6 @@ def update_status(message, color="black"):
     root.update_idletasks()
 
 def blind_data():
-    update_status(message="Writing key file...",color="yellow")
     source_path = Path(dir_path.get())
     destination_dir = source_path/'blinded'
     if not destination_dir.exists():
