@@ -18,4 +18,4 @@ When in source folder already contains a blinded folder, the user has three choi
 3. Abort and manually take care of the data in the blinded folder.
 
 ## Contribution
-New ideas about features or reporting a bug. Please feel free to open a issue. I am happy about suggestions.
+New ideas about features or reporting a bug? Please feel free to open an issue. I am happy about suggestions.
