@@ -12,4 +12,10 @@ Start application and enter the following:
 
 ## How does it work
 Based on the file suffix, BLINDER creates a list of all files in the given directory with the given suffix. Then BLINDER creates a list with values ranging from 1 to  total number of images/files. It then creates a mapping of each file with a random number from that list so that each file is assigned to one unique number. It then copies the files into a subfolder called 'blinded' and renames them according to this mapping. Along with the copied files BLINDER stores the mapping as a tab-separated .csv file in the 'blinded' subfolder for later unblinding of the data.
-**Attention:** if in the folder already exists a blinded folder BLINDER will overwrite it and the previous blinded data will be lost. This will be fixed in upcoming versions.
+When in source folder already contains a blinded folder, the user has three choices:
+1. Overwrite the data in the blinded folder with the new files.
+2. Append the new data to the existing. Hereby the numbering continues from the already existing blinded files.
+3. Abort and manually take care of the data in the blinded folder.
+
+## Contribution
+New ideas about features or reporting a bug. Please feel free to open a issue. I am happy about suggestions.
